@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moo.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,13 @@ namespace Moo.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeService service;
+
+        public HomeController(IHomeService service)
+        {
+            this.service = service;
+        }
+
         public ActionResult Index()
         {
             return View();

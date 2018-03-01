@@ -11,7 +11,7 @@ namespace Moo.Data.App_Start
     {
         protected override void Seed(MooDbContext context)
         {
-           
+            
         }
     }
 }
