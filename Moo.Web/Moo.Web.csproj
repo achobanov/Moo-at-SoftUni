@@ -192,20 +192,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Composition\NinjectBindings.cs" />
     <Compile Include="App_Composition\NinjectResolver.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -276,9 +269,9 @@
       <Project>{19f903b4-0f2e-4990-a8a8-ecee053bf386}</Project>
       <Name>Moo.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Moo.Models\Moo.Models.csproj">
-      <Project>{38d9d89e-478c-4f1f-a559-3588e13488a3}</Project>
-      <Name>Moo.Models</Name>
+    <ProjectReference Include="..\Moo.Entities\Moo.Entities.csproj">
+      <Project>{f149f8d9-143c-4b62-b2b8-d3c7801db2e4}</Project>
+      <Name>Moo.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

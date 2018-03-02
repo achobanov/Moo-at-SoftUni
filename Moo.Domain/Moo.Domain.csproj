@@ -82,9 +82,9 @@
     <Compile Include="Services\HomeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Moo.Models\Moo.Models.csproj">
-      <Project>{38d9d89e-478c-4f1f-a559-3588e13488a3}</Project>
-      <Name>Moo.Models</Name>
+    <ProjectReference Include="..\Moo.Entities\Moo.Entities.csproj">
+      <Project>{f149f8d9-143c-4b62-b2b8-d3c7801db2e4}</Project>
+      <Name>Moo.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

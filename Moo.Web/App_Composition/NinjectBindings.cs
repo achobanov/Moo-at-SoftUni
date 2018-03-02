@@ -1,5 +1,5 @@
 ﻿using Moo.Domain.Services;
-using Moo.Models.Interfaces;
+using Moo.Entities.Interfaces;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;

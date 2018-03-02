@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Moo.Models")]
+[assembly: AssemblyTitle("Moo.Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Moo.Models")]
+[assembly: AssemblyProduct("Moo.Entities")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("38d9d89e-478c-4f1f-a559-3588e13488a3")]
+[assembly: Guid("f149f8d9-143c-4b62-b2b8-d3c7801db2e4")]
 
 // Version information for an assembly consists of the following four values:
 //

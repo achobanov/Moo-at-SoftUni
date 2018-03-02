@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moo.Common", "Moo.Common\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moo.Domain", "Moo.Domain\Moo.Domain.csproj", "{19F903B4-0F2E-4990-A8A8-ECEE053BF386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moo.Models", "Moo.Models\Moo.Models.csproj", "{38D9D89E-478C-4F1F-A559-3588E13488A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moo.Entities", "Moo.Entities\Moo.Entities.csproj", "{F149F8D9-143C-4B62-B2B8-D3C7801DB2E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{19F903B4-0F2E-4990-A8A8-ECEE053BF386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F903B4-0F2E-4990-A8A8-ECEE053BF386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19F903B4-0F2E-4990-A8A8-ECEE053BF386}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38D9D89E-478C-4F1F-A559-3588E13488A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38D9D89E-478C-4F1F-A559-3588E13488A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38D9D89E-478C-4F1F-A559-3588E13488A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38D9D89E-478C-4F1F-A559-3588E13488A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F149F8D9-143C-4B62-B2B8-D3C7801DB2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F149F8D9-143C-4B62-B2B8-D3C7801DB2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F149F8D9-143C-4B62-B2B8-D3C7801DB2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F149F8D9-143C-4B62-B2B8-D3C7801DB2E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

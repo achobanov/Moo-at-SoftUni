@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Models.Interfaces
-{ 
+namespace Moo.Entities.Interfaces
+{
     public interface IHomeService
     {
         string Test();
