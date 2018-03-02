@@ -9,7 +9,7 @@ namespace Moo.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Moo.Data.Context.MooDbContext context)

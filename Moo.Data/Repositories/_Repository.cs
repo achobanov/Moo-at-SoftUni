@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Moo.Data.Generic
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext context;
 

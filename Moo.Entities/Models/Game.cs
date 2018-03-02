@@ -9,6 +9,7 @@ namespace Moo.Entities.Models
     public class Game
     {
         public int ID { get; set; }
+        public User User { get; set; }
         public bool HasUserWon { get; set; }
     }
 }

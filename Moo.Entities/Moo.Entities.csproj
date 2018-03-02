@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\Domain\IHomeService.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,10 @@ namespace Moo.Data.Context
 {
     public class MooDbContext : DbContext
     {
-        public MooDbContext() : base("AppDatabase") { }
+        public MooDbContext() : base("MooAppDatabase") { }
 
         public DbSet<Game> Games { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

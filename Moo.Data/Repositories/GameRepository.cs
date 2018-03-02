@@ -15,19 +15,18 @@ namespace Moo.Data.Repositories
     public class GameRepository : Repository<Game>, IGameRepository
     {
         public GameRepository(MooDbContext context) : base(context)
-        {
-        }
-
-        public MooDbContext MooDbContext
-        {
-            get { return this.context as MooDbContext; }
-        }
+        { }
 
         public int GetUserWonGames()
         {
             return MooDbContext.Games
                 .Where(g => g.HasUserWon == true)
                 .Count();
+        }
+
+        public MooDbContext MooDbContext
+        {
+            get { return this.context as MooDbContext; }
         }
     }
 }

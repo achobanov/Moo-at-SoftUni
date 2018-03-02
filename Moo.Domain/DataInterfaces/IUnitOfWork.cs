@@ -9,7 +9,7 @@ namespace Moo.Domain.DataInterfaces
     public interface IUnitOfWork : IDisposable
     {
         IGameRepository Games { get; }
-
+        IUserRepository Users { get; }
         int Complete();
     }
 }

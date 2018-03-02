@@ -111,10 +111,15 @@
     <Compile Include="Migrations\201803021206145_Initial.Designer.cs">
       <DependentUpon>201803021206145_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Migrations\201803021349417_UserTable.cs" />
+    <Compile Include="Migrations\201803021349417_UserTable.Designer.cs">
+      <DependentUpon>201803021349417_UserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\_Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitOfWork\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +138,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803021206145_Initial.resx">
       <DependentUpon>201803021206145_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803021349417_UserTable.resx">
+      <DependentUpon>201803021349417_UserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
