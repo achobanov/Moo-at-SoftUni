@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moo.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -8,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace Moo.Data.Context
 {
-    class MooDbContext : DbContext
+    public class MooDbContext : DbContext
     {
-        public MooDbContext() : base("MooDbContext") { }
+        public MooDbContext() : base("AppDatabase") { }
+
+        public DbSet<Game> Games { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -78,7 +78,7 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IHomeService.cs" />
+    <Compile Include="Interfaces\Domain\IHomeService.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

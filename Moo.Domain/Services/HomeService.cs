@@ -1,4 +1,5 @@
-﻿using Moo.Entities.Interfaces;
+﻿using Moo.Domain.DataInterfaces;
+using Moo.Entities.Interfaces.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,16 @@ namespace Moo.Domain.Services
 {
     public class HomeService : IHomeService
     {
+        private readonly IUnitOfWork unit;
+
+        public HomeService(IUnitOfWork unit)
+        {
+            this.unit = unit;
+        }
+
         public string Test()
         {
-            return "Test string";
+            return unit.Games.GetUserWonGames().ToString();
         }
     }
 }

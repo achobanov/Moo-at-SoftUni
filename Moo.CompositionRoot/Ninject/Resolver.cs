@@ -1,12 +1,9 @@
 ﻿using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Moo.Domain.Services;
 
-namespace Moo.AppComposition
+namespace Moo.CompositionRoot.Ninject
 {
     public class NinjectResolver : IDependencyResolver
     {
@@ -14,7 +11,7 @@ namespace Moo.AppComposition
 
         public NinjectResolver()
         {
-            this._kernel = new StandardKernel(new NinjectBindings());
+            this._kernel = new StandardKernel(new Bindings());
         }
 
         public object GetService(Type serviceType)

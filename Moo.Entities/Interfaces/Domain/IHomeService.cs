@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Entities.Interfaces
+namespace Moo.Entities.Interfaces.Domain
 {
     public interface IHomeService
     {
