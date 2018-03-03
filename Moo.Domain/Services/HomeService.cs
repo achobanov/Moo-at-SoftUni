@@ -1,5 +1,5 @@
 ﻿using Moo.Domain.DataInterfaces;
-using Moo.Entities.Interfaces.Domain;
+using Moo.Entities.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

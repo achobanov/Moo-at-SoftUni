@@ -38,6 +38,8 @@ namespace Moo.Data.Generic
             return context.Set<TEntity>().Find(id);
         }
 
+
+
         public IEnumerable<TEntity> GetAll()
         {
             return context.Set<TEntity>().ToList();
@@ -51,6 +53,13 @@ namespace Moo.Data.Generic
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public IRepository<TEntity> Include(Expression<Func<TEntity, object>> include)
+        {
+            var set = context.Set<TEntity>();
+            set.Include(include);
+            return this;
         }
     }
 }

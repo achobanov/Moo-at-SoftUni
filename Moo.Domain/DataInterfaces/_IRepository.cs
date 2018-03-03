@@ -17,6 +17,6 @@ namespace Moo.Domain.DataInterfaces
 
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> Filter(Expression<Func<TEntity, bool>> predicate); 
+        IEnumerable<TEntity> Filter(Expression<Func<TEntity, bool>> predicate);
     }
 }

@@ -1,7 +1,8 @@
 ﻿using Moo.Data.UnitOfWork;
 using Moo.Domain.DataInterfaces;
+using Moo.Domain.IdentityProviders;
 using Moo.Domain.Services;
-using Moo.Entities.Interfaces.Domain;
+using Moo.Entities.Interfaces;
 using Ninject.Modules;
 
 namespace Moo.CompositionRoot.Ninject
@@ -10,8 +11,12 @@ namespace Moo.CompositionRoot.Ninject
     {
         public override void Load()
         {
-            Bind<IHomeService>().To<HomeService>();
             Bind<IUnitOfWork>().To<Unit>();
+
+            Bind<IHomeService>().To<HomeService>();
+            Bind<IAccountService>().To<AccountService>();
+            Bind<IAuthenticationProvider>().To<AuthenitcationProvider>();
+            Bind<IAuthorizationProvider>().To<AuthorizationService>();
         }
     }
 }

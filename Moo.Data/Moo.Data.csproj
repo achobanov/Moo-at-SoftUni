@@ -115,6 +115,19 @@
     <Compile Include="Migrations\201803021349417_UserTable.Designer.cs">
       <DependentUpon>201803021349417_UserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803021556474_RolesTable.cs" />
+    <Compile Include="Migrations\201803021556474_RolesTable.Designer.cs">
+      <DependentUpon>201803021556474_RolesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803022245071_RemovedPasswordHash.cs" />
+    <Compile Include="Migrations\201803022245071_RemovedPasswordHash.Designer.cs">
+      <DependentUpon>201803022245071_RemovedPasswordHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803022259296_RequiredFields.cs" />
+    <Compile Include="Migrations\201803022259296_RequiredFields.Designer.cs">
+      <DependentUpon>201803022259296_RequiredFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\_Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +154,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803021349417_UserTable.resx">
       <DependentUpon>201803021349417_UserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803021556474_RolesTable.resx">
+      <DependentUpon>201803021556474_RolesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803022245071_RemovedPasswordHash.resx">
+      <DependentUpon>201803022245071_RemovedPasswordHash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803022259296_RequiredFields.resx">
+      <DependentUpon>201803022259296_RequiredFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

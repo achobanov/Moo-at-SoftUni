@@ -1,5 +1,4 @@
 ﻿using Moo.Entities.Interfaces;
-using Moo.Entities.Interfaces.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace Moo.Controllers
 
         public ActionResult Index()
         {
-            return Content(service.Test());
+            return View();
         }
 
         public ActionResult About()

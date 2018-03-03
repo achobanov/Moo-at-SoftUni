@@ -10,5 +10,9 @@ namespace Moo.Domain.DataInterfaces
     public interface IUserRepository : IRepository<User>
     {
         IEnumerable<User> GetTopPerformingUsers(int amount);
+        User Get(string username, string password);
+        User Get(string username);
+        User GetByEmail(string email);
+        IUserRepository Include(string include);
     }
 }

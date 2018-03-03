@@ -15,12 +15,14 @@ namespace Moo.Data.UnitOfWork
 
         public IGameRepository Games { get; private set; }
         public IUserRepository Users { get; private set; }
+        public IRoleRepository Roles { get; private set; }
 
         public Unit(MooDbContext context)
         {
             this.context = context;
             Games = new GameRepository(this.context);
             Users = new UserRepository(this.context);
+            Roles = new RoleRepository(this.context);
         }
 
         public int Complete()

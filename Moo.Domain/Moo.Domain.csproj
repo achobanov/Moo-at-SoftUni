@@ -99,11 +99,18 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\CustomMembershipUser.cs" />
+    <Compile Include="Auth\CustomPrincipal.cs" />
+    <Compile Include="Auth\CustomSerializeModel.cs" />
     <Compile Include="DataInterfaces\IGameRepository.cs" />
+    <Compile Include="DataInterfaces\IRoleRepository.cs" />
     <Compile Include="DataInterfaces\_IRepository.cs" />
     <Compile Include="DataInterfaces\IUnitOfWork.cs" />
     <Compile Include="DataInterfaces\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="IdentityProviders\AuthenitcationProvider.cs" />
+    <Compile Include="IdentityProviders\AuthorizationProvider.cs" />
     <Compile Include="Services\HomeService.cs" />
   </ItemGroup>
   <ItemGroup>
