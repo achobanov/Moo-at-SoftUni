@@ -1,13 +1,12 @@
-﻿using Moo.Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Entities.ViewModels
+namespace Moo.Entities.DataEntities
 {
-    public class TopPlayerViewModel
+    public class TopPlayerData
     {
         public string Username { get; set; }
         public double WinPercent { get; set; }

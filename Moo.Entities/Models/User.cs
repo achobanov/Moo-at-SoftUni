@@ -20,7 +20,7 @@ namespace Moo.Entities.Models
         [Required]
         public string Password { get; set; }
         public string Email { get; set; }
-        public IEnumerable<Role> Roles { get; set; }
-        public IEnumerable<Game> GamesPlayed { get; set; }
+        public ICollection<Role> Roles { get; set; }
+        public ICollection<Game> GamesPlayed { get; set; }
     }
 }

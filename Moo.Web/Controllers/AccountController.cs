@@ -49,7 +49,7 @@ namespace Moo.Controllers
             var cookie = service.Login(loginData);
             if (cookie == null)
             {
-                loginData.Status = false;
+                loginData.Error = false;
                 loginData.Message = "Wrong credentials.";
                 return View(loginData);
             }
@@ -78,7 +78,7 @@ namespace Moo.Controllers
             var registrationSuccess = service.Register(registrationData);
             if (!registrationSuccess)
             {
-                registrationData.Status = false;
+                registrationData.Error = false;
                 registrationData.Message = "Username taken, please chose another.";
                 return View(registrationData);
             }

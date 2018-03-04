@@ -32,7 +32,8 @@ namespace Moo.Controllers
         public ActionResult TopPlayers()
         {
             var topPlayers = Service.GetTopPlayers(25);
-            return View(Service.GetTopPlayers(25));
+            var viewModel = new TopPlayersViewModel() { TopPlayers = Service.GetTopPlayers(25) };
+            return View(viewModel);
         }
     }
 }

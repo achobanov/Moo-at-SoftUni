@@ -22,10 +22,11 @@ namespace Moo.Data.Repositories
         {
             var users = Include(include);
             return users
-                .Where(u => u.GamesPlayed != null)
+                .Where(u => u.GamesPlayed.Any())
                 .OrderByDescending(u =>
-                    u.GamesPlayed.Where(g => g.HasUserWon == true).Count() / u.GamesPlayed.Count())
-                .Take(amount);
+                    (double) u.GamesPlayed.Where(g => g.HasUserWon == true).Count() / u.GamesPlayed.Count())
+                .Take(amount)
+                .ToList();
         }
 
         public User Get(string username, params string[] include)

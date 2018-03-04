@@ -23,16 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Hall of Fame", "TopPlayers", "Game")</li>
+                    <li>@Html.ActionLink("Play", "Play", "Game")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-    @if(Model != null && !Model.Status)
+    @if(Model != null && Model.Error)
     {
         <div id="notification-container">
             <div class="alert alert-danger" role="alert">@Model.Message</div>

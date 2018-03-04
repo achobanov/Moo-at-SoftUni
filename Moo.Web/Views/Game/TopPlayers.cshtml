@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Moo.Entities.ViewModels.TopPlayerViewModel>
+﻿@model Moo.Entities.ViewModels.TopPlayersViewModel
 @{
     ViewBag.Title = "Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach (var player in Model)
+                @foreach (var player in Model.TopPlayers)
                 {
                     <tr>
                         <td>@player.WinPercent</td>

@@ -1,16 +1,15 @@
 ﻿using Moo.Entities.DataEntities;
 using Moo.Entities.Models;
-using Moo.Entities.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Entities.Interfaces
+namespace Moo.Entities.ViewModels
 {
-    public interface IGameService
+    public class TopPlayersViewModel : ViewModel
     {
-        IEnumerable<TopPlayerData> GetTopPlayers(int amount);
+        public IEnumerable<TopPlayerData> TopPlayers { get; set; }
     }
 }
