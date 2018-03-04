@@ -31,7 +31,7 @@ namespace Moo.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return LogOut();
+                return Logout();
             }
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
@@ -49,6 +49,8 @@ namespace Moo.Controllers
             var cookie = service.Login(loginData);
             if (cookie == null)
             {
+                loginData.Status = false;
+                loginData.Message = "Wrong credentials.";
                 return View(loginData);
             }
             Response.Cookies.Add(cookie);
@@ -103,7 +105,7 @@ namespace Moo.Controllers
         //    return View(viewModel);
         //}
 
-        public ActionResult LogOut()
+        public ActionResult Logout()
         {
             var cookie = service.Logout();
             Response.Cookies.Add(cookie);
