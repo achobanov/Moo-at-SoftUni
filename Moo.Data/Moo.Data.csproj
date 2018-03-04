@@ -127,6 +127,19 @@
     <Compile Include="Migrations\201803022259296_RequiredFields.Designer.cs">
       <DependentUpon>201803022259296_RequiredFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803041254340_MaxLengthOnUsername.cs" />
+    <Compile Include="Migrations\201803041254340_MaxLengthOnUsername.Designer.cs">
+      <DependentUpon>201803041254340_MaxLengthOnUsername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803041256219_UniqueUsername.cs" />
+    <Compile Include="Migrations\201803041256219_UniqueUsername.Designer.cs">
+      <DependentUpon>201803041256219_UniqueUsername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803041501583_GameTableAddedUserID.cs" />
+    <Compile Include="Migrations\201803041501583_GameTableAddedUserID.Designer.cs">
+      <DependentUpon>201803041501583_GameTableAddedUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Users.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\_Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -163,6 +176,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803022259296_RequiredFields.resx">
       <DependentUpon>201803022259296_RequiredFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041254340_MaxLengthOnUsername.resx">
+      <DependentUpon>201803041254340_MaxLengthOnUsername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041256219_UniqueUsername.resx">
+      <DependentUpon>201803041256219_UniqueUsername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041501583_GameTableAddedUserID.resx">
+      <DependentUpon>201803041501583_GameTableAddedUserID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

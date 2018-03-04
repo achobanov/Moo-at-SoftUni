@@ -9,6 +9,6 @@ namespace Moo.Domain.DataInterfaces
 {
     public interface IGameRepository : IRepository<Game>
     {
-        int GetUserWonGames();
+        int GetNumberOfWonGamesByUser(int userID);
     }
 }

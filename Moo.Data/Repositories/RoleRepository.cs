@@ -21,10 +21,5 @@ namespace Moo.Data.Repositories
                 .Where(r => string.Compare(name, r.RoleName) == 0)
                 .SingleOrDefault();
         }
-
-        public MooDbContext MooDbContext
-        {
-            get { return context as MooDbContext; }
-        }
     }
 }

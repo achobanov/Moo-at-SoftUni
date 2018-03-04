@@ -18,13 +18,14 @@ namespace Moo.Data.Repositories
         public UserRepository(MooDbContext context) : base(context)
         { }
 
-        public IEnumerable<User> GetTopPerformingUsers(int amount)
+        public IEnumerable<User> GetTopPerformingUsers(int amount, params string[] include)
         {
-            return MooDbContext.Users
+            var users = Include(include);
+            return users
+                .Where(u => u.GamesPlayed != null)
                 .OrderByDescending(u =>
-                    u.GamesPlayed.Where(g => g.HasUserWon).Count() / u.GamesPlayed.Count())
+                    u.GamesPlayed.Where(g => g.HasUserWon == true).Count() / u.GamesPlayed.Count())
                 .Take(amount);
-                
         }
 
         public User Get(string username, params string[] include)
@@ -40,11 +41,6 @@ namespace Moo.Data.Repositories
             return MooDbContext.Users
                 .Where(u => string.Compare(email, u.Email) == 0)
                 .FirstOrDefault();
-        }
-
-        private MooDbContext MooDbContext
-        {
-            get { return this.context as MooDbContext; }
         }
     }
 }

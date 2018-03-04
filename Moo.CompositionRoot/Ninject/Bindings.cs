@@ -13,10 +13,10 @@ namespace Moo.CompositionRoot.Ninject
         {
             Bind<IUnitOfWork>().To<Unit>();
 
-            Bind<IHomeService>().To<HomeService>();
             Bind<IAccountService>().To<AccountService>();
             Bind<IAuthenticationProvider>().To<AuthenitcationProvider>();
             Bind<IAuthorizationProvider>().To<AuthorizationService>();
+            Bind<IGameService>().To<GameService>();
         }
     }
 }

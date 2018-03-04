@@ -69,18 +69,17 @@ namespace Moo.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationViewModel registrationData)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var registrationSuccess = service.Register(registrationData);
-                if (!registrationSuccess)
-                {
-                    ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
-                    return View(registrationData);
-                }
+                registrationData.Message = "Invalid data!";
+                return View(registrationData);
             }
-            else
+
+            var registrationSuccess = service.Register(registrationData);
+            if (!registrationSuccess)
             {
-                registrationData.Message = "Something Wrong!";
+                registrationData.Status = false;
+                registrationData.Message = "Username taken, please chose another.";
                 return View(registrationData);
             }
 

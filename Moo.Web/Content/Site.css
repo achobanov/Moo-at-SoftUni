@@ -25,6 +25,7 @@ textarea {
 
 .alert {
     margin: 20px;
+    text-align: center;
 }
 .nav > li > span {
     color: #999999;

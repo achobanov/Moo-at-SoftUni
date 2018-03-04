@@ -75,8 +75,6 @@ namespace Moo.Domain.Services
             });
             Unit.Complete();
 
-            registrationData.Message = "Your account has been created successfully. ^_^";
-            registrationData.Status = true;
             return true;
         }
 

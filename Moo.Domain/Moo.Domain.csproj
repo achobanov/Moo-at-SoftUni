@@ -111,7 +111,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="IdentityProviders\AuthenitcationProvider.cs" />
     <Compile Include="IdentityProviders\AuthorizationProvider.cs" />
-    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\GameService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moo.Entities\Moo.Entities.csproj">

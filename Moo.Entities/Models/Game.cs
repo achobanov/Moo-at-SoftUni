@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 namespace Moo.Entities.Models
 {
     public class Game
-    {
+    {   
         public int ID { get; set; }
+        [Required]
+        public int UserID { get; set; }
         [Required]
         public User User { get; set; }
         [Required]

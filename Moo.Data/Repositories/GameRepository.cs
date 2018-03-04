@@ -17,16 +17,12 @@ namespace Moo.Data.Repositories
         public GameRepository(MooDbContext context) : base(context)
         { }
 
-        public int GetUserWonGames()
+        public int GetNumberOfWonGamesByUser(int userId)
         {
             return MooDbContext.Games
-                .Where(g => g.HasUserWon == true)
+                .Where(g => userId == g.UserID
+                    && g.HasUserWon == true)
                 .Count();
-        }
-
-        public MooDbContext MooDbContext
-        {
-            get { return this.context as MooDbContext; }
         }
     }
 }

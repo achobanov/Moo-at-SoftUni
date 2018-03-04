@@ -1,4 +1,5 @@
-﻿using Moo.Domain.DataInterfaces;
+﻿using Moo.Data.Context;
+using Moo.Domain.DataInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -62,6 +63,11 @@ namespace Moo.Data.Generic
                 entities = entities.Include(column);
             }
             return entities;
+        }
+
+        protected MooDbContext MooDbContext
+        {
+            get { return this.context as MooDbContext; }
         }
     }
 }
