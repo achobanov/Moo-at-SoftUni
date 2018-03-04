@@ -1,6 +1,7 @@
 ﻿using Moo.Domain.Auth;
 using Moo.Domain.DataInterfaces;
 using Moo.Entities.Interfaces;
+using Moo.Entities.Models;
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -21,21 +22,14 @@ namespace Moo.Domain.IdentityProviders
                 return false;
             }
 
-            var user = Unit.Users.Get(username, password);
-            return (user != null) ? true : false;
+            var user = Unit.Users.Get(username);
+            return (user != null && user.Password == password) ? true : false;
         }
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            var user = Unit.Users
-                .Include("Roles")
-                .Get(username);
-
-            if (user == null)
-            {
-                return null;
-            }
-            return new CustomMembershipUser(user);
+            var user = Unit.Users.Get(username, include: "Roles");
+            return user != null ? new CustomMembershipUser(user) : null;
         }
 
         public override string GetUserNameByEmail(string email)

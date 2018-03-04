@@ -4,6 +4,8 @@ using Moo.Domain.DataInterfaces;
 using Moo.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,18 +27,10 @@ namespace Moo.Data.Repositories
                 
         }
 
-        public User Get(string username, string password)
+        public User Get(string username, params string[] include)
         {
-            return MooDbContext.Users
-                .Where(u =>
-                    string.Compare(username, u.Username, StringComparison.OrdinalIgnoreCase) == 0
-                    && string.Compare(password, u.Password, StringComparison.OrdinalIgnoreCase) == 0)
-                .FirstOrDefault();
-        }
-
-        public User Get(string username)
-        {
-            return MooDbContext.Users
+            var users = Include(include);
+            return users
                 .Where(u => string.Compare(username, u.Username, StringComparison.OrdinalIgnoreCase) == 0)
                 .FirstOrDefault();
         }
@@ -46,13 +40,6 @@ namespace Moo.Data.Repositories
             return MooDbContext.Users
                 .Where(u => string.Compare(email, u.Email) == 0)
                 .FirstOrDefault();
-        }
-
-        public IUserRepository Include(string include)
-        {
-            var set = MooDbContext.Users;
-            set.Include(include);
-            return this;
         }
 
         private MooDbContext MooDbContext

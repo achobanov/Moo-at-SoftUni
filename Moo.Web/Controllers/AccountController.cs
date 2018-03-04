@@ -47,12 +47,16 @@ namespace Moo.Controllers
             }
 
             var cookie = service.Login(loginData);
+            if (cookie == null)
+            {
+                return View(loginData);
+            }
             Response.Cookies.Add(cookie);
 
             if (Url.IsLocalUrl(ReturnUrl))
                 return Redirect(ReturnUrl);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Register()

@@ -31,9 +31,7 @@ namespace Moo.Domain.Services
                 return null;
             }
 
-            var selectedUser = Unit.Users
-                .Include("User.Roles")
-                .Get(username);
+            var selectedUser = Unit.Users.Get(username);
 
             var userRoles = new string[] { };
             if (selectedUser != null)

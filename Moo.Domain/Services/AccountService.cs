@@ -39,7 +39,7 @@ namespace Moo.Domain.Services
                         UserId = user.UserId,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
-                        RoleNames = user.Roles.Select(r => r.RoleName).ToList()
+                        RoleNames = user.Roles.Select(r => r.RoleName)
                     };
 
                     string userData = JsonConvert.Serialize(userModel);
@@ -58,9 +58,7 @@ namespace Moo.Domain.Services
 
         public bool Register(RegistrationViewModel registrationData)
         {
-            // Email Verification  
             string username = Membership.GetUserNameByEmail(registrationData.Email);
-            // var user = unit.Users.GetByEmail(registrationData.Email);
             if (!string.IsNullOrEmpty(username))
             {
                 return false; //TODO: Proper feedback here plex

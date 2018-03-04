@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -38,8 +39,6 @@ namespace Moo.Data.Generic
             return context.Set<TEntity>().Find(id);
         }
 
-
-
         public IEnumerable<TEntity> GetAll()
         {
             return context.Set<TEntity>().ToList();
@@ -55,11 +54,14 @@ namespace Moo.Data.Generic
             context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public IRepository<TEntity> Include(Expression<Func<TEntity, object>> include)
+        protected DbQuery<TEntity> Include(string[] columns)
         {
-            var set = context.Set<TEntity>();
-            set.Include(include);
-            return this;
+            var entities = context.Set<TEntity>() as DbQuery<TEntity>;
+            foreach (var column in columns)
+            {
+                entities = entities.Include(column);
+            }
+            return entities;
         }
     }
 }
