@@ -12,5 +12,6 @@ namespace Moo.Entities.Interfaces
     public interface IGameService
     {
         IEnumerable<TopPlayerData> GetTopPlayers(int amount);
+        AttemptData HandleRound(string userAttempt, bool isInitialRound);
     }
 }

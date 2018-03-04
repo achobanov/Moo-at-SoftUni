@@ -32,16 +32,12 @@ namespace Moo.Domain.IdentityProviders
             return user != null ? new CustomMembershipUser(user) : null;
         }
 
+        #region Unused overrides
         public override string GetUserNameByEmail(string email)
         {
-            var user = Unit.Users.GetByEmail(email);
-            if (user != null)
-                return user.Username;
-
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
-        #region Unused overrides
         public override bool EnablePasswordRetrieval => throw new NotImplementedException();
 
         public override bool EnablePasswordReset => throw new NotImplementedException();

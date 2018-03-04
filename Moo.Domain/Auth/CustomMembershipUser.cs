@@ -18,8 +18,8 @@ namespace Moo.Domain.Auth
         public CustomMembershipUser(User user) 
             : base("AuthenitcationProvider", 
                   user.Username, 
-                  user.ID, 
-                  user.Email, 
+                  user.ID,
+                  string.Empty,
                   string.Empty, 
                   string.Empty, 
                   true, 
@@ -31,8 +31,6 @@ namespace Moo.Domain.Auth
                   DateTime.Now)
         {
             UserId = user.ID;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
             Roles = user.Roles;
         }
     }

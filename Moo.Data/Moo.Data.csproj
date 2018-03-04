@@ -139,6 +139,10 @@
     <Compile Include="Migrations\201803041501583_GameTableAddedUserID.Designer.cs">
       <DependentUpon>201803041501583_GameTableAddedUserID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803041849277_ExpandingGameTable.cs" />
+    <Compile Include="Migrations\201803041849277_ExpandingGameTable.Designer.cs">
+      <DependentUpon>201803041849277_ExpandingGameTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Users.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\_Repository.cs" />
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803041501583_GameTableAddedUserID.resx">
       <DependentUpon>201803041501583_GameTableAddedUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041849277_ExpandingGameTable.resx">
+      <DependentUpon>201803041849277_ExpandingGameTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Moo.Domain.DataInterfaces
 {
-    public interface IGameRepository : IRepository<Game>
+    public interface IGameRepository : IRepository<Entities.Models.Game>
     {
         int GetNumberOfWonGamesByUser(int userID);
     }

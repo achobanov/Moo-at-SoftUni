@@ -21,7 +21,7 @@ namespace Moo.Data.Repositories
         {
             return MooDbContext.Games
                 .Where(g => userId == g.UserID
-                    && g.HasUserWon == true)
+                    && g.UserWon == true)
                 .Count();
         }
     }

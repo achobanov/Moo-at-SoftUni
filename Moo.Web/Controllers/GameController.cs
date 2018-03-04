@@ -22,13 +22,13 @@ namespace Moo.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Play()
-        //{
-
-        //    return View();
-        //}
-
+        [HttpPost]
+        public ActionResult Play(string userAttempt, bool isInitialRound)
+        {
+            var result = Service.HandleRound(userAttempt, isInitialRound);
+            return View(result);
+        }
+        
         public ActionResult TopPlayers()
         {
             var topPlayers = Service.GetTopPlayers(25);

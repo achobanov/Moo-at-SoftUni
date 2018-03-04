@@ -67,9 +67,6 @@ namespace Moo.Domain.Services
             Unit.Users.Add(new User()
             {
                 Username = registrationData.Username,
-                FirstName = registrationData.FirstName,
-                LastName = registrationData.LastName,
-                Email = registrationData.Email,
                 Password = registrationData.Password,
                 Roles = GetUserRoles()
             });

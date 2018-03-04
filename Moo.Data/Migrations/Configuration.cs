@@ -47,7 +47,7 @@ namespace Moo.Data.Migrations
             for (var i = 0; i < numberOfGames; i++)
             {
                 var hasUserWonValue = i > wonGames ? false : true;
-                games.Add(new Game() { UserID = userId, HasUserWon = hasUserWonValue });
+                games.Add(new Game() { UserID = userId, UserWon = hasUserWonValue });
             }
 
             return games;

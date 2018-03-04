@@ -24,7 +24,7 @@ namespace Moo.Data.Repositories
             return users
                 .Where(u => u.GamesPlayed.Any())
                 .OrderByDescending(u =>
-                    (double) u.GamesPlayed.Where(g => g.HasUserWon == true).Count() / u.GamesPlayed.Count())
+                    (double) u.GamesPlayed.Where(g => g.UserWon == true).Count() / u.GamesPlayed.Count())
                 .Take(amount)
                 .ToList();
         }
@@ -34,13 +34,6 @@ namespace Moo.Data.Repositories
             var users = Include(include);
             return users
                 .Where(u => string.Compare(username, u.Username, StringComparison.OrdinalIgnoreCase) == 0)
-                .FirstOrDefault();
-        }
-
-        public User GetByEmail(string email)
-        {
-            return MooDbContext.Users
-                .Where(u => string.Compare(email, u.Email) == 0)
                 .FirstOrDefault();
         }
     }

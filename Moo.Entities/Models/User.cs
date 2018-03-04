@@ -13,13 +13,11 @@ namespace Moo.Entities.Models
         public int ID { get; set; }
         [Required]
         [MaxLength(100)]
-        [Index(IsUnique =true)]
+        [Index(IsUnique = true)]
         public string Username { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         [Required]
         public string Password { get; set; }
-        public string Email { get; set; }
+        public int ActiveGameID { get; set; }
         public ICollection<Role> Roles { get; set; }
         public ICollection<Game> GamesPlayed { get; set; }
     }

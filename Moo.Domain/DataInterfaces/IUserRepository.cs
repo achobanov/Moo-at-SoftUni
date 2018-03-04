@@ -11,6 +11,5 @@ namespace Moo.Domain.DataInterfaces
     {
         IEnumerable<User> GetTopPerformingUsers(int amount, params string[] include);
         User Get(string username, params string[] include);
-        User GetByEmail(string email);
     }
 }
