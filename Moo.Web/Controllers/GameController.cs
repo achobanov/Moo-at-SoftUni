@@ -14,6 +14,7 @@ namespace Moo.Controllers
         public const string USER_GUESS = "Guess";
         public const string OPPONENT_GUESS = "OpponentGuess";
         public const string USER_RESPONSE = "UserResponse";
+        private const string TEMP_DATA_KEY = "model";
 
         private readonly IGameService Service;
 
@@ -38,81 +39,75 @@ namespace Moo.Controllers
         // GET: Game/Play
         public ActionResult Play()
         {
-            var game = Service.GetActiveGame();
-            if (game == null)
+            var gameData = TempData[TEMP_DATA_KEY] as GameViewModel;
+            if (gameData == null)
+                gameData = Service.GetActiveGame(isLoadingFromDb: true);
+            if (gameData == null)
                 return RedirectToAction("New");
 
-            return View(new GameViewModel()
-            {
-                GameID = game.ID,
-                UserNumber = game.UserNumber,
-                Rounds = game.UserTurns == null ? 0 : game.UserTurns.ToList().Count(),
-                UserTurns = game.UserTurns == null ? new List<Turn>() : game.UserTurns.ToList(),
-                OpponentTurns = game.UserTurns == null ? new List<OpponentTurn>() : game.OpponentTurns.ToList(),
-                FormAction = "Guess"
-            });
-            }
+            return View(gameData);
+        }
 
         [HttpPost]
         public ActionResult Guess(GameViewModel viewData)
         { 
-            var game = Service.GetActiveGame();
+            var gameData = Service.GetActiveGame();
             var data = new GuessData()
             {
-                GameID = game.ID,
-                Guess = viewData.Guess,
-                Rounds = game.UserTurns.Count()
+                GameID = gameData.GameID,
+                Rounds = gameData.UserTurns.Count(),
+                Guess = viewData.Guess
             };
             Service.HandleUserGuess(data, out int bulls, out int cows);
 
-            viewData.UserTurns = game.UserTurns.ToList();
-            viewData.OpponentTurns = game.OpponentTurns.ToList();
-            viewData.UserNumber = game.UserNumber;
-            viewData.Bulls = bulls;
-            viewData.Cows = cows;
-            viewData.FormAction = "OpponentGuess";
-            return View("Play", viewData);
+            gameData.Guess = viewData.Guess;
+            gameData.Bulls = bulls;
+            gameData.Cows = cows;
+            gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
+            gameData.PostFormToAction = "OpponentGuess";
+            TempData[TEMP_DATA_KEY] = gameData;
+            return RedirectToAction("Play");
         }
 
         [HttpPost]
         public ActionResult OpponentGuess(GameViewModel viewData)
         {
-            var game = Service.GetActiveGame();
+            var gameData = Service.GetActiveGame();
             var data = new GuessData()
             {
-                GameID = game.ID,
-                Rounds = game.OpponentTurns.Count()
+                GameID = gameData.GameID,
+                Rounds = gameData.OpponentTurns.Count()
             };
 
-            viewData.Guess = Service.HandleOpponentGuess(data);
-            viewData.UserTurns = game.UserTurns.ToList();
-            viewData.OpponentTurns = game.OpponentTurns.ToList();
-            viewData.UserNumber = game.UserNumber;
-            viewData.FormAction = "UserResponse";
-            viewData.Bulls = 0;
-            viewData.Cows = 0;
-            return View("Play", viewData);
+            gameData.Guess = Service.HandleOpponentGuess(data);
+            gameData.PostFormToAction = "UserResponse";
+            gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
+            gameData.Bulls = 0;
+            gameData.Cows = 0;
+            TempData[TEMP_DATA_KEY] = gameData;
+            return RedirectToAction("Play");
         }
 
         [HttpPost]
         public ActionResult UserResponse(GameViewModel viewData)
         {
-            var game = Service.GetActiveGame();
+            var gameData = Service.GetActiveGame();
             var data = new ResponseData()
             {
-                GameID = game.ID,
+                GameID = gameData.GameID,
+                UserTurns = gameData.UserTurns,
+                OpponentTurns = gameData.OpponentTurns,
                 Cows = viewData.Cows,
                 Bulls = viewData.Bulls,
-                Rounds = game.UserTurns.Count(),
                 Guess = viewData.Guess
             };
             Service.HandleUserResponse(data);
-            viewData.FormAction = "Guess";
-            viewData.UserTurns = game.UserTurns.ToList();
-            viewData.OpponentTurns = game.OpponentTurns.ToList();
-            viewData.UserNumber = game.UserNumber;
-            viewData.Guess = "";
-            return View("Play", viewData);
+
+            gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
+            gameData.PostFormToAction = "Guess";
+            gameData.Guess = "";
+            TempData[TEMP_DATA_KEY] = gameData;
+            return RedirectToAction("Play");
         }
 
         public ActionResult TopPlayers()

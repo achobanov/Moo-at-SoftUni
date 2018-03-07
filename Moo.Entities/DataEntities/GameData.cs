@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Moo.Entities.DataEntities
 {
-    public class ResponseData
+    public class GameData
     {
-        public int GameID { get; set; }
-        public int Bulls { get; set; }
-        public int Cows { get; set; }
-        public string Guess { get; set; }
+        public int ID { get; set; }
         public List<Turn> UserTurns { get; set; }
         public List<Turn> OpponentTurns { get; set; }
+
     }
 }

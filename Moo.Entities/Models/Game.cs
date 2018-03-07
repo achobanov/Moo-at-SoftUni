@@ -12,9 +12,9 @@ namespace Moo.Entities.Models
         public string UserNumber { get; set; }
         [Required]
         public string OpponentNumber { get; set; }
+        public string CurrentAction { get; set; }
         public bool UserWon { get; set; }
         public bool Draw { get; set; }
-        public ICollection<Turn> UserTurns { get; set; }
-        public ICollection<OpponentTurn> OpponentTurns { get; set; }
+        public ICollection<Turn> Turns { get; set; }
     }
 }

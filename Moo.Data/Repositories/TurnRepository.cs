@@ -1,4 +1,5 @@
-﻿using Moo.Data.Context;
+﻿using Moo.Common;
+using Moo.Data.Context;
 using Moo.Domain.DataInterfaces;
 using Moo.Entities.Models;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Moo.Data.Repositories
         {
             return MooDbContext.Turns
                 .Where(t => t.GameID == gameId
-                    && t.Action == "AI_GUESS");       
+                    && t.Action.Equals(Constants.OPPONENT_GUESS));       
         }
 
         public Turn GetLastOpponentTurn(int gameId)

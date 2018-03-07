@@ -9,5 +9,8 @@ namespace Moo.Common
     public static class Constants
     {
         public const int NUMBER_LENGTH = 4;
+        public const string USER_RESPONSE = "UserResponse";
+        public const string USER_GUESS = "Guess";
+        public const string OPPONENT_GUESS = "OpponentGuess";
     }
 }

@@ -84,6 +84,7 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\GameData.cs" />
     <Compile Include="DataEntities\GuessData.cs" />
     <Compile Include="DataEntities\ResponseData.cs" />
     <Compile Include="ViewModels\Game\GameViewModel.cs" />

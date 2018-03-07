@@ -8,18 +8,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Moo.Entities.Models;
 using Moo.Entities.DataEntities;
+using Moo.Entities.ViewModels.Game;
+using Moo.Common;
 
 namespace Moo.Domain.Services
 {
     public class GameService : IGameService
     {
-        private const string USER_RESPONSE = "USER_RESPONSE";
-        private const string USER_GUESS = "USER_GUESS";
-        private const string AI_GUESS = "AI_GUESS";
-
         private readonly IUnitOfWork Unit;
         private readonly Opponent Opponent;
-        private readonly Tools Tools;
 
         public GameService(IUnitOfWork unit, Opponent opponent)
         {
@@ -57,19 +54,40 @@ namespace Moo.Domain.Services
             return gameId;
         }
 
-        public Game GetActiveGame()
+        public GameViewModel GetActiveGame(bool isLoadingFromDb = false)
         {
             var userId = GetCurrentUserId();
             var user = Unit.Users.Get(userId);
             if (user.ActiveGameID != null)
             {
-                var game = Unit.Games.Get((int)user.ActiveGameID, "UserTurns", "OpponentTurns");
-                if (game.UserTurns == null)
+                var game = Unit.Games.Get((int)user.ActiveGameID, "Turns");
+                var viewModel = new GameViewModel()
                 {
-                    game.UserTurns = new List<Turn>();
-                    game.OpponentTurns = new List<OpponentTurn>();
+                    GameID = game.ID,
+                    UserNumber = game.UserNumber,
+                    PostFormToAction = game.CurrentAction,
+                    OpponentNumberSlots = new string[] { "", "", "", "" }
+                };
+                if (isLoadingFromDb && game.Turns.Count() != 0)
+                {
+                    var lastTurn = game.Turns.OrderByDescending(t => t.Index).FirstOrDefault();
+                    viewModel.Guess = lastTurn.Guess;
+                    viewModel.Bulls = (int)lastTurn.Bulls;
+                    viewModel.Cows = (int)lastTurn.Cows;
                 }
-                return game;
+                if (game.Turns == null)
+                {
+                    viewModel.UserTurns = new List<Turn>();
+                    viewModel.OpponentTurns = new List<Turn>();
+                    viewModel.Rounds = 0;
+                }
+                else
+                {
+                    viewModel.UserTurns = game.Turns.Where(t => t.Action == Constants.USER_GUESS).ToList();
+                    viewModel.OpponentTurns = game.Turns.Where(t => t.Action == Constants.OPPONENT_GUESS).ToList();
+                    viewModel.Rounds = viewModel.UserTurns.Count();
+                }
+                return viewModel;
             }
             else
                 return null;
@@ -81,7 +99,8 @@ namespace Moo.Domain.Services
             {
                 UserID = userId,
                 UserNumber = userNumber,
-                OpponentNumber = Opponent.ChooseNumber()
+                OpponentNumber = Opponent.ChooseNumber(),
+                CurrentAction = Constants.USER_GUESS
             };
             Unit.Games.Add(newGame);
             Unit.Complete();
@@ -97,7 +116,7 @@ namespace Moo.Domain.Services
 
         public void HandleUserGuess(GuessData data, out int bulls, out int cows)
         {
-            var game = Unit.Games.Get(data.GameID);
+            var game = Unit.Games.Get(data.GameID, "Turns");
             if (game == null)
                 throw new Exception("Game not found!");
 
@@ -106,34 +125,44 @@ namespace Moo.Domain.Services
 
             Unit.Turns.Add(new Turn()
             {
-                Action = USER_GUESS,
+                Action = Constants.USER_GUESS,
                 Guess = data.Guess,
                 GameID = data.GameID,
                 Bulls = bulls,
                 Cows = cows,
-                Index = data.Rounds + 1
+                Index = game.Turns.Count()
             });
-            Unit.Complete();
-        }
-
-        public void HandleUserResponse(ResponseData data)
-        {
-            Unit.Turns.Add(new OpponentTurn()
-            {
-                Action = AI_GUESS,
-                Index = data.Rounds,
-                GameID = data.GameID,
-                Guess = data.Guess,
-                Bulls = data.Bulls,
-                Cows = data.Cows
-            });
+            game.CurrentAction = Constants.OPPONENT_GUESS;
             Unit.Complete();
         }
 
         public string HandleOpponentGuess(GuessData data)
         {
-            var opponentTurns = Unit.Turns.GetOpponentTurns(data.GameID) as ICollection<OpponentTurn>;
+            var opponentTurns = Unit.Turns.GetOpponentTurns(data.GameID).ToList();
+            Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_RESPONSE;
             return Opponent.ChooseNextGuess(opponentTurns);
+        }
+
+        public void HandleUserResponse(ResponseData data)
+        {
+            var numberOfUserTurns = 0;
+            var numberOfOpponentTurns = 0;
+            if (data.UserTurns != null)
+                numberOfUserTurns = data.UserTurns.Count();
+            if (data.OpponentTurns != null)
+                numberOfOpponentTurns = data.OpponentTurns.Count();
+
+            Unit.Turns.Add(new Turn()
+            {
+                Action = Constants.OPPONENT_GUESS,
+                Index = numberOfUserTurns + numberOfOpponentTurns,
+                GameID = data.GameID,
+                Guess = data.Guess,
+                Bulls = data.Bulls,
+                Cows = data.Cows
+            });
+            Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_GUESS;
+            Unit.Complete();
         }
     }
 }

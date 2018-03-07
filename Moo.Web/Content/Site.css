@@ -36,7 +36,55 @@ textarea {
 .body-content {
     margin-top:15px;
 }
-.
-{
-    background-color: lightgray;
+.turn-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.turn-head {
+    background: #ddd;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    text-align: center;
+}
+.turn-container ul {
+    padding-left: 0px;
+    list-style: none;
+}
+.turn-container span {
+    font-weight: 400;
+}
+.number-container {
+    box-shadow: 0 3px 2px #ddd;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid brown;
+    color: brown;
+    font-size: 18px;
+    height: 100px;
+}
+#user-total-guess-container input {
+    width: 35px;
+    display: inline-block;
+    margin: 0 -3px 10px;
+}
+.turns-heading {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    border-bottom: 1px solid brown;
+    margin-bottom: 10px;
+}
+.main {
+    text-align: center;
+}
+
+/* Bootstrap override */
+.game-container .form-group,
+.game-container .form-group input {
+    text-align: center;
+}
+.game-container .form-group input {
+    margin: auto;
 }

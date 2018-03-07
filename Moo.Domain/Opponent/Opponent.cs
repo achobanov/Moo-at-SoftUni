@@ -24,7 +24,7 @@ namespace Moo.Domain.OpponentPlayer
             Tools.CountCowsAndBulls(guess, number, out bulls, out cows);
         }
 
-        public string ChooseNextGuess(ICollection<OpponentTurn> previousTurns)
+        public string ChooseNextGuess(ICollection<Turn> previousTurns)
         {
             var permutations = Tools.GetPermutations(Constants.NUMBER_LENGTH).ToList();
             if (previousTurns != null)
@@ -38,7 +38,7 @@ namespace Moo.Domain.OpponentPlayer
 
         private void RemoveInvalidGuesses(ICollection<string> possibleGuesses, string guess, int bulls, int cows)
         {
-            foreach (var possibleGuess in possibleGuesses)
+            foreach (var possibleGuess in possibleGuesses.ToList())
             {
                 Tools.CountCowsAndBulls(guess, possibleGuess, out int possibleBulls, out int possibleCows);
                 if (possibleBulls != bulls || possibleCows != cows)

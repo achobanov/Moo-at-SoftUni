@@ -10,7 +10,7 @@ namespace Moo.Entities.Interfaces
     {
         IEnumerable<TopPlayerData> GetTopPlayers(int amount);
         int InitiateGame(string userNumber);
-        Game GetActiveGame();
+        GameViewModel GetActiveGame(bool isLoadingFromDb = false);
         void HandleUserGuess(GuessData data, out int bools, out int cows);
         string HandleOpponentGuess(GuessData data);
         void HandleUserResponse(ResponseData data);

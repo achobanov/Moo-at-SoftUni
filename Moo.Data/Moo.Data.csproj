@@ -159,6 +159,18 @@
     <Compile Include="Migrations\201803071241568_Change.Designer.cs">
       <DependentUpon>201803071241568_Change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803071824488_SetGameTurnsInSingleCollection.cs" />
+    <Compile Include="Migrations\201803071824488_SetGameTurnsInSingleCollection.Designer.cs">
+      <DependentUpon>201803071824488_SetGameTurnsInSingleCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803071834531_RemovedOpponentTurn.cs" />
+    <Compile Include="Migrations\201803071834531_RemovedOpponentTurn.Designer.cs">
+      <DependentUpon>201803071834531_RemovedOpponentTurn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803072029244_GameTableAddedCurrentAction.cs" />
+    <Compile Include="Migrations\201803072029244_GameTableAddedCurrentAction.Designer.cs">
+      <DependentUpon>201803072029244_GameTableAddedCurrentAction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Users.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TurnRepository.cs" />
@@ -173,6 +185,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Moo.Common\Moo.Common.csproj">
+      <Project>{1b543643-78e9-426f-9c4b-8336b839ac05}</Project>
+      <Name>Moo.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Moo.Domain\Moo.Domain.csproj">
       <Project>{19f903b4-0f2e-4990-a8a8-ecee053bf386}</Project>
       <Name>Moo.Domain</Name>
@@ -221,6 +237,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803071241568_Change.resx">
       <DependentUpon>201803071241568_Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071824488_SetGameTurnsInSingleCollection.resx">
+      <DependentUpon>201803071824488_SetGameTurnsInSingleCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071834531_RemovedOpponentTurn.resx">
+      <DependentUpon>201803071834531_RemovedOpponentTurn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072029244_GameTableAddedCurrentAction.resx">
+      <DependentUpon>201803072029244_GameTableAddedCurrentAction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
