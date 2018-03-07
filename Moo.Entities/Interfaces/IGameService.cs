@@ -1,17 +1,18 @@
 ﻿using Moo.Entities.DataEntities;
 using Moo.Entities.Models;
 using Moo.Entities.ViewModels;
-using System;
+using Moo.Entities.ViewModels.Game;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Moo.Entities.Interfaces
 {
     public interface IGameService
     {
         IEnumerable<TopPlayerData> GetTopPlayers(int amount);
-        AttemptData HandleRound(string userAttempt, bool isInitialRound);
+        int InitiateGame(string userNumber);
+        Game GetActiveGame();
+        void HandleUserGuess(GuessData data, out int bools, out int cows);
+        string HandleOpponentGuess(GuessData data);
+        void HandleUserResponse(ResponseData data);
     }
 }

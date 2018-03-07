@@ -16,6 +16,7 @@ namespace Moo.Data.Context
         public DbSet<Game> Games { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Turn> Turns { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

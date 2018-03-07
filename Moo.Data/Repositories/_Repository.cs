@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Data.Generic
+namespace Moo.Data.Repositories
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
@@ -55,7 +55,7 @@ namespace Moo.Data.Generic
             context.Set<TEntity>().RemoveRange(entities);
         }
 
-        protected DbQuery<TEntity> Include(string[] columns)
+        protected DbQuery<TEntity> Include(params string[] columns)
         {
             var entities = context.Set<TEntity>() as DbQuery<TEntity>;
             foreach (var column in columns)

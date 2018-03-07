@@ -143,8 +143,25 @@
     <Compile Include="Migrations\201803041849277_ExpandingGameTable.Designer.cs">
       <DependentUpon>201803041849277_ExpandingGameTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803061637362_IDK.cs" />
+    <Compile Include="Migrations\201803061637362_IDK.Designer.cs">
+      <DependentUpon>201803061637362_IDK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070905001_NoIdea.cs" />
+    <Compile Include="Migrations\201803070905001_NoIdea.Designer.cs">
+      <DependentUpon>201803070905001_NoIdea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070925513_NullableActiveGameId.cs" />
+    <Compile Include="Migrations\201803070925513_NullableActiveGameId.Designer.cs">
+      <DependentUpon>201803070925513_NullableActiveGameId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803071241568_Change.cs" />
+    <Compile Include="Migrations\201803071241568_Change.Designer.cs">
+      <DependentUpon>201803071241568_Change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Users.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\TurnRepository.cs" />
     <Compile Include="Repositories\_Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +209,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803041849277_ExpandingGameTable.resx">
       <DependentUpon>201803041849277_ExpandingGameTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803061637362_IDK.resx">
+      <DependentUpon>201803061637362_IDK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070905001_NoIdea.resx">
+      <DependentUpon>201803070905001_NoIdea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070925513_NullableActiveGameId.resx">
+      <DependentUpon>201803070925513_NullableActiveGameId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071241568_Change.resx">
+      <DependentUpon>201803071241568_Change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

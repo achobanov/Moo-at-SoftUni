@@ -84,23 +84,33 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataEntities\AttemptData.cs" />
+    <Compile Include="DataEntities\GuessData.cs" />
+    <Compile Include="DataEntities\ResponseData.cs" />
+    <Compile Include="ViewModels\Game\GameViewModel.cs" />
     <Compile Include="DataEntities\TopPlayerData.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IAuthenticationProvider.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IAuthorizationProvider.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\OpponentTurn.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Turn.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PlayViewModel.cs" />
+    <Compile Include="ViewModels\Game\GuessViewModel.cs" />
     <Compile Include="ViewModels\TopPlayersViewModel.cs" />
+    <Compile Include="ViewModels\Game\ResponseViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Moo.Common\Moo.Common.csproj">
+      <Project>{1B543643-78E9-426F-9C4B-8336B839AC05}</Project>
+      <Name>Moo.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -17,7 +17,7 @@ namespace Moo.Entities.Models
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        public int ActiveGameID { get; set; }
+        public int? ActiveGameID { get; set; }
         public ICollection<Role> Roles { get; set; }
         public ICollection<Game> GamesPlayed { get; set; }
     }

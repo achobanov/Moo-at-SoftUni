@@ -1,5 +1,5 @@
 ﻿using Moo.Data.Context;
-using Moo.Data.Generic;
+using Moo.Data.Repositories;
 using Moo.Domain.DataInterfaces;
 using Moo.Entities.Models;
 using System;

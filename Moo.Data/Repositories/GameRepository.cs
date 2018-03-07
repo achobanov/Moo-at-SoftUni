@@ -1,5 +1,5 @@
 ﻿using Moo.Data.Context;
-using Moo.Data.Generic;
+using Moo.Data.Repositories;
 using Moo.Domain.DataInterfaces;
 using Moo.Entities.Models;
 using System;
@@ -16,6 +16,14 @@ namespace Moo.Data.Repositories
     {
         public GameRepository(MooDbContext context) : base(context)
         { }
+
+        public Game Get(int gameId, params string[] includes)
+        {
+            var games = Include(includes);
+            return games
+                .Where(g => g.ID == gameId)
+                .Single();
+        }
 
         public int GetNumberOfWonGamesByUser(int userId)
         {

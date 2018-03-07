@@ -232,6 +232,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Game\TopPlayers.cshtml" />
+    <Content Include="Views\Game\New.cshtml" />
+    <Content Include="Views\Game\Play.cshtml" />
+    <Content Include="Views\Game\_Turn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moo.Common\Moo.Common.csproj">

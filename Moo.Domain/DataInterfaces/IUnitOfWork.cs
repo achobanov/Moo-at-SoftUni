@@ -11,6 +11,7 @@ namespace Moo.Domain.DataInterfaces
         IGameRepository Games { get; }
         IUserRepository Users { get; }
         IRoleRepository Roles { get; }
+        ITurnRepository Turns { get; }
         int Complete();
     }
 }

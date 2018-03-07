@@ -1,10 +1,5 @@
-﻿using Moo.Entities.DataEntities;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Moo.Entities.Models
 {
@@ -14,9 +9,12 @@ namespace Moo.Entities.Models
         [Required]
         public int UserID { get; set; }
         [Required]
+        public string UserNumber { get; set; }
+        [Required]
+        public string OpponentNumber { get; set; }
         public bool UserWon { get; set; }
         public bool Draw { get; set; }
-        public IEnumerable<AttemptData> Attempts { get; set; }
-        public IEnumerable<AttemptData> OponentAttempts { get; set; }
+        public ICollection<Turn> UserTurns { get; set; }
+        public ICollection<OpponentTurn> OpponentTurns { get; set; }
     }
 }

@@ -3,37 +3,35 @@
     ViewBag.Title = "Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h1>Hall of Fame</h1>
-<div class="row">
-    <div class="col-md-8">
-        <<div class="panel panel-default">
-            <div class="panel-heading">Panel heading</div>
-            <div class="panel-body">
-                <p>Top 25 best players</p>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Win %</th>
-                        <th>Username</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var player in Model.TopPlayers)
-                {
-                    <tr>
-                        <td>@player.WinPercent</td>
-                        <td>@player.Username</td>
-                        <td>@player.GamesWon</td>
-                        <td>@player.GamesLost</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+        <p>Top 25 best players</p>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Win %</th>
+                <th>Username</th>
+                <th>Wins</th>
+                <th>Losses</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var player in Model.TopPlayers)
+        {
+            <tr>
+                <td>@player.WinPercent</td>
+                <td>@player.Username</td>
+                <td>@player.GamesWon</td>
+                <td>@player.GamesLost</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
+
 
 

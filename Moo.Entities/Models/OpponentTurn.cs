@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moo.Entities.DataEntities
+namespace Moo.Entities.Models
 {
-    class Class1
+    public class OpponentTurn : Turn
     {
+        public ICollection<string> PossibleGuesses { get; set; }
     }
 }

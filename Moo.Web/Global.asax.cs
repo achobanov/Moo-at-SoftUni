@@ -36,13 +36,10 @@ namespace Moo
                 CustomPrincipal principal = new CustomPrincipal(authTicket.Name);
 
                 principal.UserId = serializeModel.UserId;
-                principal.FirstName = serializeModel.FirstName;
-                principal.LastName = serializeModel.LastName;
                 principal.Roles = serializeModel.RoleNames.ToArray();
 
                 HttpContext.Current.User = principal;
             }
-
         }
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Moo.Common
 {
-    class Constants
+    public static class Constants
     {
-
+        public const int NUMBER_LENGTH = 4;
     }
 }

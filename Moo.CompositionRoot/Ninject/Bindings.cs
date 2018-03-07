@@ -1,5 +1,6 @@
 ﻿using Moo.Data.UnitOfWork;
 using Moo.Domain.DataInterfaces;
+using Moo.Domain.OpponentPlayer;
 using Moo.Domain.IdentityProviders;
 using Moo.Domain.Services;
 using Moo.Entities.Interfaces;
@@ -17,6 +18,9 @@ namespace Moo.CompositionRoot.Ninject
             Bind<IAuthenticationProvider>().To<AuthenitcationProvider>();
             Bind<IAuthorizationProvider>().To<AuthorizationService>();
             Bind<IGameService>().To<GameService>();
+
+            Bind<Opponent>().To<Opponent>();
+            Bind<Tools>().To<Tools>();  
         }
     }
 }

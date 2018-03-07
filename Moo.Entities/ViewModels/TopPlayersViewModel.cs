@@ -1,4 +1,4 @@
-﻿using Moo.Entities.DataEntities;
+﻿using Moo.Entities.ViewModels;
 using Moo.Entities.Models;
 using System;
 using System.Collections.Generic;
