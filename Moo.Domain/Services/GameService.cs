@@ -81,7 +81,7 @@ namespace Moo.Domain.Services
             {
                 UserID = userId,
                 UserNumber = userNumber,
-                OpponentNumber = Tools.GenerateNumber()
+                OpponentNumber = Opponent.ChooseNumber()
             };
             Unit.Games.Add(newGame);
             Unit.Complete();

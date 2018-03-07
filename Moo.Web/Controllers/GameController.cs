@@ -32,7 +32,7 @@ namespace Moo.Controllers
         public ActionResult New(string number)
         {
             var gameId = Service.InitiateGame(number);
-            return RedirectToAction("Guess");
+            return RedirectToAction("Play");
         }
 
         // GET: Game/Play
@@ -51,7 +51,7 @@ namespace Moo.Controllers
                 OpponentTurns = game.UserTurns == null ? new List<OpponentTurn>() : game.OpponentTurns.ToList(),
                 FormAction = "Guess"
             });
-        }
+            }
 
         [HttpPost]
         public ActionResult Guess(GameViewModel viewData)
@@ -89,6 +89,8 @@ namespace Moo.Controllers
             viewData.OpponentTurns = game.OpponentTurns.ToList();
             viewData.UserNumber = game.UserNumber;
             viewData.FormAction = "UserResponse";
+            viewData.Bulls = 0;
+            viewData.Cows = 0;
             return View("Play", viewData);
         }
 
@@ -109,6 +111,7 @@ namespace Moo.Controllers
             viewData.UserTurns = game.UserTurns.ToList();
             viewData.OpponentTurns = game.OpponentTurns.ToList();
             viewData.UserNumber = game.UserNumber;
+            viewData.Guess = "";
             return View("Play", viewData);
         }
 
