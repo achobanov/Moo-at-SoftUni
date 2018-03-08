@@ -58,8 +58,8 @@ namespace Moo.Domain.Services
 
         public bool Register(RegistrationViewModel registrationData)
         {
-            string username = Membership.GetUserNameByEmail(registrationData.Email);
-            if (!string.IsNullOrEmpty(username))
+            var user = Membership.GetUser(registrationData.Username, false);
+            if (user != null)
             {
                 return false; //TODO: Proper feedback here plex
             }
