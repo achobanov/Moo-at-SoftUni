@@ -49,7 +49,7 @@ textarea {
     text-align: center;
 }
 .turn-container ul {
-    padding-left: 0px;
+    padding-left: 0;
     list-style: none;
 }
 .turn-container span {
@@ -68,6 +68,7 @@ textarea {
     width: 35px;
     display: inline-block;
     margin: 0 -3px 10px;
+    padding:10px;
 }
 .turns-heading {
     font-weight: bold;
@@ -78,6 +79,30 @@ textarea {
 }
 .main {
     text-align: center;
+}
+.end {
+    background: whitesmoke;
+    opacity: 0.8;
+}
+.end-body {
+    background: white;
+    padding-top:40px;   
+    padding-bottom: 35px;
+    opacity: 1;
+    margin-top: 30px;
+}
+h2 {
+    text-align: center;
+}
+.text-container {
+    padding: 20px;
+}
+.text-container h4 {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+input.disabled {
+    opacity: 0.5;
 }
 
 /* Bootstrap override */

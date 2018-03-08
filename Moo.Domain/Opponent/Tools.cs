@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moo.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -49,6 +50,8 @@ namespace Moo.Domain.OpponentPlayer
 
         public string SelectRandomValue(List<string> values)
         {
+            if (values.Count == 0)
+                return Constants.CHEATER;
             if (values.Count == 1)
                 return values[0];
 

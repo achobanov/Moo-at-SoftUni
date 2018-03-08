@@ -13,7 +13,7 @@ using Moo.Common;
 
 namespace Moo.Domain.Services
 {
-    public class GameService : IGameService
+    public class GameService : Service, IGameService
     {
         private readonly IUnitOfWork Unit;
         private readonly Opponent Opponent;
@@ -43,15 +43,15 @@ namespace Moo.Domain.Services
             return topPlayers;
         }
 
-        public int InitiateGame(string userNumber)
+        public void InitiateGame(string userNumber)
         {
             var userId = GetCurrentUserId();
-            var gameId = CreateGame(userId, userNumber);
             var user = Unit.Users.Get(userId);
+            if (user.ActiveGameID != null)
+                return;
+            var gameId = CreateGame(userId, userNumber);            
             user.ActiveGameID = gameId;
             Unit.Complete();
-
-            return gameId;
         }
 
         public GameViewModel GetActiveGame(bool isLoadingFromDb = false)
@@ -95,7 +95,7 @@ namespace Moo.Domain.Services
 
         private int CreateGame(int userId, string userNumber)
         {
-            var newGame = new Entities.Models.Game()
+            var newGame = new Game()
             {
                 UserID = userId,
                 UserNumber = userNumber,
@@ -108,18 +108,11 @@ namespace Moo.Domain.Services
             return newGame.ID;
         }
 
-        private int GetCurrentUserId()
-        {
-            var userContext = System.Web.HttpContext.Current.User as CustomPrincipal;
-            return userContext.UserId;
-        }
-
-        public void HandleUserGuess(GuessData data, out int bulls, out int cows)
+        public bool HandleUserGuess(GuessData data, out int bulls, out int cows)
         {
             var game = Unit.Games.Get(data.GameID, "Turns");
             if (game == null)
                 throw new Exception("Game not found!");
-
             var opponentNumber = game.OpponentNumber;
             Opponent.RespondToUser(data.Guess, opponentNumber, out bulls, out cows);
 
@@ -130,20 +123,42 @@ namespace Moo.Domain.Services
                 GameID = data.GameID,
                 Bulls = bulls,
                 Cows = cows,
-                Index = game.Turns.Count()
+                Index = game.Turns.Count(),
             });
             game.CurrentAction = Constants.OPPONENT_GUESS;
+            game.OpponentNumberSlots = data.OpponentNumberSlots.ToString();
             Unit.Complete();
+            if (game.OpponentNumber == data.Guess)
+                return true;
+            else
+                return false;
         }
 
         public string HandleOpponentGuess(GuessData data)
         {
             var opponentTurns = Unit.Turns.GetOpponentTurns(data.GameID).ToList();
-            Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_RESPONSE;
-            return Opponent.ChooseNextGuess(opponentTurns);
+            //Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_RESPONSE;
+            var game = Unit.Games.Get(data.GameID);
+            var guess = Opponent.ChooseNextGuess(opponentTurns);
+                
+            if (guess == game.UserNumber)
+            {
+                Unit.Turns.Add(new Turn()
+                {
+                    Action = Constants.OPPONENT_GUESS,
+                    Index = game.Turns.Count(),
+                    GameID = data.GameID,
+                    Guess = data.Guess,
+                    Bulls = 4,
+                    Cows = 0
+                });
+                Unit.Complete();
+            };
+
+            return guess;
         }
 
-        public void HandleUserResponse(ResponseData data)
+        public Turn HandleUserResponse(ResponseData data)
         {
             var numberOfUserTurns = 0;
             var numberOfOpponentTurns = 0;
@@ -151,8 +166,7 @@ namespace Moo.Domain.Services
                 numberOfUserTurns = data.UserTurns.Count();
             if (data.OpponentTurns != null)
                 numberOfOpponentTurns = data.OpponentTurns.Count();
-
-            Unit.Turns.Add(new Turn()
+            var turn = new Turn()
             {
                 Action = Constants.OPPONENT_GUESS,
                 Index = numberOfUserTurns + numberOfOpponentTurns,
@@ -160,9 +174,42 @@ namespace Moo.Domain.Services
                 Guess = data.Guess,
                 Bulls = data.Bulls,
                 Cows = data.Cows
-            });
-            Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_GUESS;
+            };
+            Unit.Turns.Add(turn);
+            Unit.Games.Get(data.GameID).CurrentAction = Constants.USER_RESPONSE;
             Unit.Complete();
+
+            return turn;
+        }
+
+        public GameViewModel EndGame(int gameId, string status)
+        {
+            var user = Unit.Users.Get(GetCurrentUserId());
+            var game = Unit.Games.Get(gameId, "Turns");
+
+            if (user.ActiveGameID == gameId)
+            {
+                user.ActiveGameID = null;
+                game.IsConcluded = true;
+                switch (status)
+                {
+                    case Constants.VICTORY: game.UserWon = true; break;
+                    case Constants.DEFEAT: game.UserWon = false; break;
+                    case Constants.CHEATER: game.UserWon = false; break;
+                }
+                Unit.Complete();
+            }
+
+            return new GameViewModel()
+            {
+                UserNumber = game.UserNumber,
+                OpponentNumberSlots = game.OpponentNumber.ToCharArray().Select(c => c.ToString()).ToArray(),
+                Guess = game.Turns.Last().Guess,
+                UserTurns = game.Turns.Where(t => t.Action == Constants.USER_GUESS).ToList(),
+                OpponentTurns = game.Turns.Where(t => t.Action == Constants.OPPONENT_GUESS).ToList(),
+                Rounds = game.Turns.Count() / 2,
+                Status = status
+            };
         }
     }
 }

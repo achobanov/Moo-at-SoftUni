@@ -3,25 +3,38 @@
     ViewBag.Title = "NewGame";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>NewGame</h2>
-<p>
-    Bulls and Cows is a guessing game. Think of a number, try to guess ur opponent's. Number size is 4 digits.
-</p>
-<p><a class="btn btn-primary" href="https://en.wikipedia.org/wiki/Bulls_and_Cows">Read more</a></p>
-@using (Html.BeginForm("New", "Game", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{   
-<div class="form-group">
-    <label for="number" class="control-label col-md-2">Secret number</label>
-    <div class="col-md-10">
-        <input name="number" class="form-control" />
+<div class="container">
+    <h2>New Game</h2>
+    <div class="text-container">
+        <h4>Players: <strong>two</strong></h4>
+        <p>
+            Players take turns in trying to guess each other's number.
+        </p>
+        <h4>Description:</h4>
+        <p>One player, the Chooser, thinks of a four-digit number and the other player, the Guesser, tries to guess it.</p>
+        <p>At each turn the Guesser tries a four digit number, and the Chooser says how close it is to the answer by giving:</p>
+        <ul>
+            <li>The number of <strong>Bulls</strong> - digits correct in the right position.</li>
+            <li>The number of <strong>Cows</strong> - digits correct but in the wrong position.</li>
+        </ul>
+        <p>The Guesser tries to guess the answer in the fewest number of turns.</p>
+        <p>If either number has repeated digits the rule is that each digit can only count towards the score once, and Bulls are counted before Cows.</p>
+        <p><a class="btn btn-primary" href="https://en.wikipedia.org/wiki/Bulls_and_Cows">Read more</a></p>
     </div>
+    @using (Html.BeginForm("New", "Game", FormMethod.Post, new { @class = "col-md-6 col-md-offset-3", role = "form" }))
+    {
+        <div class="form-group col">
+            <label for="number" class="control-label">Secret number</label>
+            <input id="number" name="number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input id="submit" type="button" class="btn btn-success form-control disabled" value="Start" />
+        </div>
+    }
 </div>
-<div class="form-group">
-    <input type="submit" class="btn btn-success" />
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/number-validation")
 }
-
 
 
 

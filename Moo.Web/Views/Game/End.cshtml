@@ -1,0 +1,93 @@
+﻿@model Moo.Entities.ViewModels.Game.GameViewModel
+@{     
+    ViewBag.Title = "End";
+}
+
+<div class="container game-container end">
+    <h2>Play</h2>
+    <header class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="number-container">
+                <div>Opponent number:</div>
+                <div id="user-total-guess-container">
+                    <input name="OpponentNumberSlots" value="@Model.OpponentNumberSlots[0]" class="form-control" />
+                    <input name="OpponentNumberSlots" value="@Model.OpponentNumberSlots[1]" class="form-control" />
+                    <input name="OpponentNumberSlots" value="@Model.OpponentNumberSlots[2]" class="form-control" />
+                    <input name="OpponentNumberSlots" value="@Model.OpponentNumberSlots[3]" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+            <div class="number-container">
+                <div>@Html.DisplayNameFor(model => model.UserNumber)</div>
+                <div>@Model.UserNumber</div>
+            </div>
+        </div>
+    </header>
+    <main class="row">
+        <div class="col-md-3">
+            <div class="turns">
+                <div class="turns-heading">Your turns</div>
+                @foreach (var turn in Model.UserTurns.OrderByDescending(t => t.Index))
+                {
+                    <div class="turn-container">
+                        <div class="turn-head">
+                            <span class="turn-index">@turn.Index</span>
+                        </div>
+                        <div class="turn-body">
+                            <ul>
+                                <li>Guess: <span>@turn.Guess</span></li>
+                                <li>Bulls: <span>@turn.Bulls</span></li>
+                                <li>Cows: <span>@turn.Cows</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Guess, new { @class = "control-label" });
+                @if (@Model.Status == Moo.Common.Constants.CHEATER)
+                {
+                <input value="No possible numbers, for provided Bulls and Cows. You cheat." class="form-control" readonly />
+                }
+                else
+                {
+                <input type="number" id="Guess" name="Guess" class="form-control" readonly />
+                }
+            </div>
+            <div class="main end-body">
+                <h3>@Model.Status</h3>
+                @if(@Model.Status == Moo.Common.Constants.CHEATER)
+                {
+                <p>This game is recorded as a loss, since you tried to cheat.</p>
+                }
+                <div class="naviation">
+                    <a href="/Game/New" class="btn btn-success">Play another</a>
+                    <a href="/Game/TopPlayers" class="btn btn-default">Hall of Fame</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="turns-heading">
+                Opponent turns
+            </div>
+            @foreach (var turn in Model.OpponentTurns.OrderByDescending(t => t.Index))
+            {
+                <div class="turn-container">
+                    <div class="turn-head">
+                        <span class="turn-index">@turn.Index</span>
+                    </div>
+                    <div class="turn-body">
+                        <ul>
+                            <li>Guess: <span>@turn.Guess</span></li>
+                            <li>Bulls: <span>@turn.Bulls</span></li>
+                            <li>Cows: <span>@turn.Cows</span></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</div>

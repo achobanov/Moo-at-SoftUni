@@ -1,5 +1,6 @@
 namespace Moo.Data.Migrations
 {
+    using Moo.Common;
     using Moo.Entities.Models;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Moo.Data.Migrations
 
         protected override void Seed(Moo.Data.Context.MooDbContext context)
         {
-            // CreateUsers(context);
+            CreateUsers(context);
 
             //  This method will be called after migrating to the latest version.
 
@@ -47,7 +48,14 @@ namespace Moo.Data.Migrations
             for (var i = 0; i < numberOfGames; i++)
             {
                 var hasUserWonValue = i > wonGames ? false : true;
-                games.Add(new Game() { UserID = userId, UserWon = hasUserWonValue });
+                games.Add(new Game() {
+                    UserID = userId,
+                    UserWon = hasUserWonValue,
+                    IsConcluded = true,
+                    CurrentAction = Constants.OPPONENT_GUESS,
+                    UserNumber = "1234",
+                    OpponentNumber = "2345"
+                });
             }
 
             return games;

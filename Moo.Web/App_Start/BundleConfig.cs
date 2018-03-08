@@ -8,6 +8,12 @@ namespace Moo
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/number-validation").Include(
+                        "~/Scripts/number-validation.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/play-validation").Include(
+                        "~/Scripts/play-validation.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

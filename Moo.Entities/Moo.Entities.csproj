@@ -94,7 +94,6 @@
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IAuthorizationProvider.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\OpponentTurn.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Turn.cs" />
     <Compile Include="Models\User.cs" />

@@ -9,10 +9,11 @@ namespace Moo.Entities.Interfaces
     public interface IGameService
     {
         IEnumerable<TopPlayerData> GetTopPlayers(int amount);
-        int InitiateGame(string userNumber);
+        void InitiateGame(string userNumber);
         GameViewModel GetActiveGame(bool isLoadingFromDb = false);
-        void HandleUserGuess(GuessData data, out int bools, out int cows);
+        bool HandleUserGuess(GuessData data, out int bools, out int cows);
         string HandleOpponentGuess(GuessData data);
-        void HandleUserResponse(ResponseData data);
+        Turn HandleUserResponse(ResponseData data);
+        GameViewModel EndGame(int gameId, string status);
     }
 }

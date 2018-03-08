@@ -38,7 +38,7 @@ namespace Moo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel loginData, string ReturnUrl = "")
+        public ActionResult Login(LoginViewModel loginData, string returnUrl = "")
         {
             if (!ModelState.IsValid)
             {
@@ -55,8 +55,8 @@ namespace Moo.Controllers
             }
             Response.Cookies.Add(cookie);
 
-            if (Url.IsLocalUrl(ReturnUrl))
-                return Redirect(ReturnUrl);
+            if (Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
 
             return RedirectToAction("Index", "Home");
         }

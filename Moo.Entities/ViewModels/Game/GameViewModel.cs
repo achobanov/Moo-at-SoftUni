@@ -21,5 +21,7 @@ namespace Moo.Entities.ViewModels.Game
         public int Cows { get; set; }
 
         public string PostFormToAction { get; set; }
+        public string End { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -115,6 +115,7 @@
     <Compile Include="IdentityProviders\AuthenitcationProvider.cs" />
     <Compile Include="IdentityProviders\AuthorizationProvider.cs" />
     <Compile Include="Services\GameService.cs" />
+    <Compile Include="Services\_Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moo.Common\Moo.Common.csproj">

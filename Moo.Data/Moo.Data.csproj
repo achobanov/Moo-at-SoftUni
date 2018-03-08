@@ -171,6 +171,18 @@
     <Compile Include="Migrations\201803072029244_GameTableAddedCurrentAction.Designer.cs">
       <DependentUpon>201803072029244_GameTableAddedCurrentAction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803080632545_GameTableAddedIsConcluded.cs" />
+    <Compile Include="Migrations\201803080632545_GameTableAddedIsConcluded.Designer.cs">
+      <DependentUpon>201803080632545_GameTableAddedIsConcluded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803080742208_GameTableAddedOpponentNumberSlots.cs" />
+    <Compile Include="Migrations\201803080742208_GameTableAddedOpponentNumberSlots.Designer.cs">
+      <DependentUpon>201803080742208_GameTableAddedOpponentNumberSlots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803081035365_Seed.cs" />
+    <Compile Include="Migrations\201803081035365_Seed.Designer.cs">
+      <DependentUpon>201803081035365_Seed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Users.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TurnRepository.cs" />
@@ -246,6 +258,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803072029244_GameTableAddedCurrentAction.resx">
       <DependentUpon>201803072029244_GameTableAddedCurrentAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080632545_GameTableAddedIsConcluded.resx">
+      <DependentUpon>201803080632545_GameTableAddedIsConcluded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080742208_GameTableAddedOpponentNumberSlots.resx">
+      <DependentUpon>201803080742208_GameTableAddedOpponentNumberSlots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803081035365_Seed.resx">
+      <DependentUpon>201803081035365_Seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

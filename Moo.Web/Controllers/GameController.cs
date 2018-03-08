@@ -6,6 +6,7 @@ using Moo.Entities.DataEntities;
 using System.Collections.Generic;
 using System.Linq;
 using Moo.Entities.Models;
+using Moo.Common;
 
 namespace Moo.Controllers
 {
@@ -29,14 +30,15 @@ namespace Moo.Controllers
         }
 
         [HttpPost]
-        [Route("{number:regex([1-9][0-9]{3})}")]
+        [CustomAuthorize]
         public ActionResult New(string number)
         {
-            var gameId = Service.InitiateGame(number);
+            Service.InitiateGame(number);
             return RedirectToAction("Play");
         }
 
         // GET: Game/Play
+        [CustomAuthorize]
         public ActionResult Play()
         {
             var gameData = TempData[TEMP_DATA_KEY] as GameViewModel;
@@ -48,7 +50,7 @@ namespace Moo.Controllers
             return View(gameData);
         }
 
-        [HttpPost]
+        [CustomAuthorize]
         public ActionResult Guess(GameViewModel viewData)
         { 
             var gameData = Service.GetActiveGame();
@@ -56,9 +58,12 @@ namespace Moo.Controllers
             {
                 GameID = gameData.GameID,
                 Rounds = gameData.UserTurns.Count(),
-                Guess = viewData.Guess
+                Guess = viewData.Guess,
+                OpponentNumberSlots = viewData.OpponentNumberSlots
             };
-            Service.HandleUserGuess(data, out int bulls, out int cows);
+            var victory = Service.HandleUserGuess(data, out int bulls, out int cows);
+            if (victory)
+                return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.VICTORY });
 
             gameData.Guess = viewData.Guess;
             gameData.Bulls = bulls;
@@ -70,6 +75,7 @@ namespace Moo.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult OpponentGuess(GameViewModel viewData)
         {
             var gameData = Service.GetActiveGame();
@@ -80,6 +86,11 @@ namespace Moo.Controllers
             };
 
             gameData.Guess = Service.HandleOpponentGuess(data);
+            if (gameData.Guess == Constants.CHEATER)
+                return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.CHEATER });
+            if (gameData.Guess == gameData.UserNumber)
+                return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.DEFEAT, guess = gameData.Guess });
+
             gameData.PostFormToAction = "UserResponse";
             gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
             gameData.Bulls = 0;
@@ -89,6 +100,7 @@ namespace Moo.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize]
         public ActionResult UserResponse(GameViewModel viewData)
         {
             var gameData = Service.GetActiveGame();
@@ -101,13 +113,23 @@ namespace Moo.Controllers
                 Bulls = viewData.Bulls,
                 Guess = viewData.Guess
             };
-            Service.HandleUserResponse(data);
+            var turn = Service.HandleUserResponse(data);
 
+            gameData.OpponentTurns.Add(turn);
             gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
             gameData.PostFormToAction = "Guess";
             gameData.Guess = "";
             TempData[TEMP_DATA_KEY] = gameData;
             return RedirectToAction("Play");
+        }
+
+        [CustomAuthorize]
+        public ActionResult End(int gameId, string status, string guess)
+        {
+            var gameData = Service.EndGame(gameId, status);
+            if (guess != null)
+                gameData.Guess = guess;
+            return View(gameData);  
         }
 
         public ActionResult TopPlayers()
