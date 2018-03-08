@@ -148,7 +148,7 @@ namespace Moo.Domain.Services
                     Action = Constants.OPPONENT_GUESS,
                     Index = game.Turns.Count(),
                     GameID = data.GameID,
-                    Guess = data.Guess,
+                    Guess = guess,
                     Bulls = 4,
                     Cows = 0
                 });

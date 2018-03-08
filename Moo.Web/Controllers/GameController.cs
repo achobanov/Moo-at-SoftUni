@@ -89,7 +89,7 @@ namespace Moo.Controllers
             if (gameData.Guess == Constants.CHEATER)
                 return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.CHEATER });
             if (gameData.Guess == gameData.UserNumber)
-                return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.DEFEAT, guess = gameData.Guess });
+                return RedirectToAction("End", new { gameId = gameData.GameID, status = Constants.DEFEAT });
 
             gameData.PostFormToAction = "UserResponse";
             gameData.OpponentNumberSlots = viewData.OpponentNumberSlots;
@@ -124,11 +124,9 @@ namespace Moo.Controllers
         }
 
         [CustomAuthorize]
-        public ActionResult End(int gameId, string status, string guess)
+        public ActionResult End(int gameId, string status)
         {
             var gameData = Service.EndGame(gameId, status);
-            if (guess != null)
-                gameData.Guess = guess;
             return View(gameData);  
         }
 
